@@ -1,18 +1,14 @@
 var express = require('express'),
 app = express(),
-request = require('request'),
-api_key = require('./api-key.js'),
-fs = require('fs');
+routes = require('./controllers/routes'),
+morgan = require('morgan');
 
-var Halo = {
-	url: 'https://www.haloapi.com/profile/h5/profiles/EL Raphiki/spartan',
-	method: 'GET',
-	headers: {
-		'Ocp-Apim-Subscription-Key': api_key,
-		'Content-Type': 'image/png'
-	}
-}
+app.set('view engine', 'ejs');
+app.use('/static', express.static(__dirname + '/public'));
+app.use(morgan('combined'));
 
-request(Halo, function(err, res, body) {
-	if(err) throw err;
-}).pipe(fs.createWriteStream('spartan.png'));
+app.get('/', function(req,res) {
+	res.redirect('/halo');
+})
+app.use('/halo', routes)
+app.listen(3000)

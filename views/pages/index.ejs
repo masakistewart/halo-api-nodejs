@@ -11,12 +11,18 @@
 		<div class="jumbotron">
 			<div class="row">
 				<div class="col-md-12">
-					<img src="/static/spartan.png"/> <img src="/static/emblem.png"/>
+					<center><img src="/static/spartan.png"/> <img src="/static/emblem.png"/></center>
 				</div>
+				<form class="form" method="post" action="/halo">
+					<div class="form-group">
+						<label for="GamerTag">GamerTag</label>
+						<input class="form-control" name="GamerTag" type="text">
+						<button type="submit" class="btn btn-success">Search</button>
+					</div>
+				</form>
 			</div>
 		</div>
 	</div>
-
 <% include ../partials/footer %>
 </body>
 </html>
